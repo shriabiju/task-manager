@@ -1,105 +1,104 @@
-# TaskZen – Project & Task Manager
+TaskZen – Project & Task Management Application
 
-TaskZen is a **Java Swing-based desktop application** designed to help users efficiently manage **projects, tasks, deadlines, and priorities** in a clean and user-friendly dashboard environment.
+TaskZen is a Java Swing-based desktop application developed to help users efficiently manage projects, tasks, deadlines, and priorities through a clean, organized, and interactive dashboard interface.
 
-This project was developed as an academic mini project / internal submission to demonstrate the implementation of **GUI-based desktop application development using Java**, while applying concepts of **Object-Oriented Programming (OOP)**, modular design, event handling, and user interaction.
+This project was created as an academic mini project / internal submission to demonstrate the practical implementation of Java GUI development, Object-Oriented Programming (OOP), modular architecture, and event-driven programming.
 
----
-[▶️ Watch Demo Video](./taskmanagement.mp4)
+📌 Project Overview
 
-## 📌 Project Overview
+TaskZen provides a centralized workspace where users can:
 
-TaskZen provides a centralized platform where users can:
+Create and manage multiple projects
+Add and organize tasks under each project
+Assign deadlines
+Set priority levels
+Mark tasks as completed
+Delete tasks and projects
+View work in a structured and user-friendly interface
 
-- Create and manage multiple **projects**
-- Add tasks under each project
-- Assign **deadlines**
-- Set **priority levels**
-- Mark tasks as **completed**
-- Delete tasks and projects
-- View and organize work in a visually structured dashboard
+The application follows a modular design approach, separating:
 
-The application follows a **modular architecture**, separating the **user interface**, **business logic**, and **data models**, making the project easier to understand, maintain, and extend.
+User Interface
+Business Logic
+Data Models
 
----
+This improves the project's readability, maintainability, and scalability.
 
-## 🎯 Objectives
+📸 Screenshots
+Dashboard View
 
-The main objectives of this project are:
+Task Management Interface
 
-- To develop a desktop-based **Task Management System**
-- To apply **Java Swing** for graphical user interface design
-- To demonstrate **project-wise task organization**
-- To implement operations such as:
-  - Add task
-  - Delete task
-  - Complete task
-  - Add project
-  - Delete project
-- To provide an intuitive and professional dashboard layout
-- To practice **modular Java programming** and event-driven design
+Project Workspace
 
----
+🎯 Objectives
 
-## ✨ Features
+The primary objectives of this project are:
 
-### ✅ Project Management
-- Create multiple projects
-- Delete selected projects
-- Automatically load tasks for the selected project
+To develop a desktop-based Task Management System
+To implement a GUI application using Java Swing
+To demonstrate project-wise task organization
+To apply Object-Oriented Programming concepts
+To implement essential task management operations such as:
+Add Task
+Delete Task
+Complete Task
+Add Project
+Delete Project
+To create a clean and professional dashboard-style user interface
+✨ Features
+1. Project Management
+Create multiple projects
+Delete selected projects
+Load tasks dynamically for the selected project
+2. Task Management
+Add tasks under a selected project
+Enter:
+Task title
+Date
+Time
+Priority
+Delete selected tasks
+Mark selected tasks as completed
+3. Task Properties
 
-### ✅ Task Management
-- Add tasks to a selected project
-- Enter task title, date, time, and priority
-- Delete selected tasks
-- Mark selected tasks as completed
-
-### ✅ Task Properties
 Each task stores:
-- **Title**
-- **Deadline**
-- **Priority**
-- **Completion status**
 
-### ✅ Priority Levels
-Tasks can be assigned one of the following priorities:
-- Low
-- Medium
-- High
+Title
+Deadline
+Priority
+Completion Status
+4. Priority Levels
 
-### ✅ Completion Tracking
+Tasks can be assigned one of the following priority levels:
+
+Low
+Medium
+High
+5. Completion Tracking
+
 Completed tasks are visually distinguished using:
-- ✔ completion mark
-- strikethrough text
-- completed state tracking
 
-### ✅ Interactive Dashboard UI
+✔ Completion indicator
+Strikethrough text
+Completion status tracking
+6. Interactive Dashboard UI
+
 The application includes:
-- A **sidebar navigation panel**
-- A **project workspace panel**
-- A **task management panel**
-- A **live date and time display**
-- A modern dashboard-inspired layout
 
----
-
-## 🛠️ Technologies Used
-
-| Technology | Purpose |
-|-----------|---------|
-| **Java** | Core programming language |
-| **Java Swing** | GUI development |
-| **AWT** | Layouts, colors, fonts, rendering |
-| **OOP Concepts** | Encapsulation, modularity, abstraction |
-| **Event Handling** | Button clicks, list selection, task actions |
-
----
-
-## 🧱 Project Structure
-
-The project is organized into multiple packages for better modularity and readability.
-
-```bash
+Sidebar navigation panel
+Project workspace panel
+Task management panel
+Live date and time display
+Modern dashboard-inspired layout
+🛠️ Technologies Used
+Technology	Purpose
+Java	Core programming language
+Java Swing	GUI development
+AWT	Layouts, fonts, colors, and rendering
+OOP Concepts	Encapsulation, abstraction, modularity
+Event Handling	User interaction and action management
+🧱 Project Structure
 TaskZen/
 │
 ├── main/
@@ -117,9 +116,10 @@ TaskZen/
 │   ├── ProjectPanel.java
 │   └── TaskPanel.java
 │
+├── 1.png
+├── 2.png
+├── 3.png
 └── README.md
-
-
 📂 Module Description
 1. main Package
 Main.java
@@ -129,11 +129,11 @@ This is the entry point of the application.
 Responsibilities:
 
 Launches the GUI using SwingUtilities.invokeLater()
-Initializes the main application frame
-Ensures UI starts safely on the Event Dispatch Thread
+Initializes the main application window
+Ensures safe execution on the Event Dispatch Thread (EDT)
 2. model Package
 
-This package contains the data classes used in the application.
+This package contains the data model classes used in the application.
 
 Project.java
 
@@ -142,12 +142,12 @@ Represents a project that contains:
 Project name
 List of tasks
 
-Methods include:
+Functions include:
 
 Add task
 Delete task
 Get task list
-Count completed/pending tasks
+Count completed and pending tasks
 Task.java
 
 Represents an individual task with:
@@ -157,11 +157,11 @@ Deadline
 Priority
 Completion status
 
-Methods include:
+Functions include:
 
-Mark task completed
-Mark task pending
-Accessors and mutators for task details
+Mark task as completed
+Mark task as pending
+Access and modify task details
 3. service Package
 TaskService.java
 
@@ -170,19 +170,19 @@ This is the business logic layer of the application.
 Responsibilities:
 
 Manage all projects
-Add/delete projects
-Add/delete tasks
-Mark tasks complete
-Fetch tasks of a selected project
-Maintain counts for total/completed/pending tasks
+Add and delete projects
+Add and delete tasks
+Mark tasks as completed
+Fetch tasks for the selected project
+Maintain task counts
 
 This class acts as the bridge between:
 
-the UI
-and the data models
+UI Layer
+Data Models
 4. ui Package
 
-This package contains all graphical interface components.
+This package contains all graphical user interface components.
 
 MainFrame.java
 
@@ -190,24 +190,24 @@ The main application window.
 
 Responsibilities:
 
-Creates the dashboard layout
+Builds the dashboard layout
 Integrates:
 ProjectPanel
 TaskPanel
 Displays:
-app title
-welcome message
-live date and time
+App title
+Welcome section
+Live date and time
 ProjectPanel.java
 
-Responsible for managing project-related interactions.
+Responsible for managing project-related operations.
 
 Features:
 
-Displays all available projects
-Allows adding new projects
-Allows deleting existing projects
-Updates task view when a project is selected
+Display available projects
+Add new projects
+Delete existing projects
+Update task view on project selection
 TaskPanel.java
 
 Responsible for task-related operations.
@@ -216,50 +216,50 @@ Features:
 
 Add new tasks
 Set:
-title
-date
-time
-priority
-Display tasks in a custom list format
+Title
+Date
+Time
+Priority
+Display tasks in list format
 Delete tasks
 Mark tasks as completed
 
-This panel is the core working area of the application.
+This panel serves as the main working area of the application.
 
 🖥️ User Interface Design
 
-The application follows a dashboard-style desktop interface for a more professional and modern look.
+The application follows a dashboard-style desktop interface to provide a cleaner and more modern user experience.
 
-UI Components Included:
+UI Components Included
 Sidebar navigation
 Project workspace list
 Task input form
 Task list display
 Action buttons
 Date and time card
-Custom styling using fonts, colors, spacing, and layout managers
-Design Goals:
+Custom fonts, colors, spacing, and layouts
+Design Goals
 Clean layout
 Easy navigation
-Good visual hierarchy
-Better user experience than a default Java Swing application
+Better visual hierarchy
+Improved user experience compared to a default Swing application
 ⚙️ Working of the Application
-Step 1 – Start the Application
+Step 1 – Launch the Application
 
-When the application launches:
+When the application starts:
 
-the main window opens
-default projects are shown:
+The main window opens
+Default projects are displayed:
 Personal
 Work
 College
 Step 2 – Select a Project
 
-The user selects a project from the left panel.
+The user selects a project from the sidebar.
 
 Once selected:
 
-tasks belonging to that project are loaded in the main area
+Tasks belonging to that project are loaded into the main panel
 Step 3 – Add a Task
 
 The user enters:
@@ -298,7 +298,7 @@ Project / Task Models
 Updated UI Display
 🧠 Concepts Applied
 
-This project demonstrates the practical use of several programming and software development concepts:
+This project demonstrates the practical implementation of the following concepts:
 
 Core Java Concepts
 Classes and Objects
@@ -310,7 +310,7 @@ Method Design
 Object-Oriented Programming Concepts
 Encapsulation
 Modularity
-Separation of concerns
+Separation of Concerns
 Reusability
 GUI Programming Concepts
 Swing Components
@@ -318,34 +318,11 @@ Layout Managers
 Event Listeners
 Custom Rendering
 UI Styling
-📸 Screens / Interface Sections
-
-The interface consists of the following main sections:
-
-1. Sidebar
-
-Contains:
-
-Branding / App name
-Navigation buttons
-Project management area
-2. Header
-
-Contains:
-
-Welcome text
-App subtitle
-Current date and time
-3. Task Management Area
-
-Contains:
-
-Task input fields
-Priority selection
-Task list
-Task action buttons
 🚀 How to Run the Project
 Requirements
+
+Make sure the following are installed:
+
 Java JDK 8 or above
 Any Java IDE such as:
 IntelliJ IDEA
@@ -353,70 +330,69 @@ Eclipse
 NetBeans
 VS Code (with Java extensions)
 Steps to Run
-Clone or download the project:
+Clone the repository
 git clone https://github.com/shriabiju/task-manager.git
-Open the project in your Java IDE
-Navigate to:
+Open the project in your preferred Java IDE
+Navigate to
 main/Main.java
-Run the Main.java file
-▶️ Sample Default Projects
+Run Main.java
+▶️ Default Projects
 
-When the application starts, it automatically loads these sample projects:
+When the application launches, the following sample projects are available by default:
 
 Personal
 Work
 College
 
-These can be used immediately to test task creation and management.
+These can be used immediately for testing and demonstration.
 
 📈 Future Enhancements
 
-This project can be further enhanced with advanced features such as:
+This project can be further improved by adding:
 
-File/database storage for permanent saving
+File / database storage for persistent data
 Task editing functionality
-Project editing / rename option
-Search and filter tasks
-Progress bar / analytics
+Project rename / edit option
+Search and filter features
+Progress tracking / analytics
 Calendar picker for date input
-Notification/reminder support
+Notifications / reminders
 Dark / Light theme toggle
 Login system
 Export tasks to file
 
-These enhancements can make the project closer to a real-world productivity application.
+These enhancements can make the application more aligned with real-world productivity tools.
 
-✅ Advantages of the Project
+✅ Advantages
 Easy to use
 Clean and organized dashboard
 Supports project-wise task management
 Demonstrates practical Java GUI development
-Good academic mini project for OOP / Java subjects
+Suitable as an academic mini project
 Modular and extendable code structure
 ⚠️ Limitations
 
 Current limitations of the project include:
 
 Data is stored only in memory during runtime
-No database or file persistence
+No file/database persistence
 No user authentication
-No task editing option yet
+No task editing functionality yet
 Date and time are entered manually
 
 These limitations are acceptable for a mini project and can be improved in future versions.
 
 📚 Learning Outcomes
 
-Through this project, the following learning outcomes were achieved:
+Through this project, the following outcomes were achieved:
 
-Understanding Java Swing-based desktop development
-Applying OOP concepts in a practical application
-Designing modular Java projects
+Understanding Java Swing-based desktop application development
+Applying OOP concepts in a practical project
+Designing modular Java applications
 Implementing event-driven user interfaces
 Building a complete GUI-based management system
-
-👩‍💻 Author
-
+👩‍💻 Authors
 Shria Biju
 Shwet Singh
+
 VIT Bhopal University
