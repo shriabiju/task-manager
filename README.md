@@ -145,6 +145,8 @@ TaskZen/
 ├── 3.png
 └── README.md
 
+---
+
 📂 Module Description
 1. main Package
 Main.java
