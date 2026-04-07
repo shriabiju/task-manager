@@ -35,10 +35,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "<html><b>" + title + "</b><br>" +
-               "Deadline: " + deadline + "<br>" +
-               "Priority: " + priority + "<br>" +
-               "Status: " + (completed ? "Completed" : "Pending") +
-               "</html>";
+        return title + " | Deadline: " + deadline + " | Priority: " + priority + " | " +
+                (completed ? "Completed" : "Pending");
     }
 }

@@ -23,4 +23,15 @@ public class Project {
     public void addTask(Task task) {
         tasks.add(task);
     }
+
+    public void deleteTask(int index) {
+        if (index >= 0 && index < tasks.size()) {
+            tasks.remove(index);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
