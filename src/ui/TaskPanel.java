@@ -5,15 +5,13 @@ import service.TaskService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class TaskPanel extends JPanel {
 
     private TaskService taskService;
-    private DefaultListModel<String> taskListModel;
-    private JList<String> taskList;
+    private DefaultListModel<Task> taskListModel;
+    private JList<Task> taskList;
     private JTextField taskField;
     private JTextField dateField;
     private JTextField timeField;
@@ -57,9 +55,8 @@ public class TaskPanel extends JPanel {
         // ===== LIST =====
         taskListModel = new DefaultListModel<>();
         taskList = new JList<>(taskListModel);
-        taskList.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        taskList.setFixedCellHeight(60);
-        taskList.setBackground(Color.WHITE);
+        taskList.setCellRenderer(new TaskRenderer());
+        taskList.setFixedCellHeight(70);
 
         add(new JScrollPane(taskList), BorderLayout.CENTER);
 
@@ -116,9 +113,10 @@ public class TaskPanel extends JPanel {
     public void loadTasksForProject(int index) {
         currentProjectIndex = index;
         taskListModel.clear();
+
         List<Task> tasks = taskService.getTasksOfProject(index);
         for (Task t : tasks) {
-            taskListModel.addElement(t.toString());
+            taskListModel.addElement(t);
         }
     }
 
@@ -131,5 +129,50 @@ public class TaskPanel extends JPanel {
         b.setForeground(Color.BLACK);
         b.setFocusPainted(false);
         b.setFont(new Font("SansSerif", Font.BOLD, 14));
+    }
+
+    // ===== CUSTOM RENDERER (IMPORTANT UI IMPROVEMENT) =====
+    class TaskRenderer extends JPanel implements ListCellRenderer<Task> {
+
+        private JLabel title;
+        private JLabel details;
+
+        public TaskRenderer() {
+            setLayout(new BorderLayout());
+            title = new JLabel();
+            details = new JLabel();
+
+            title.setFont(new Font("SansSerif", Font.BOLD, 14));
+            details.setFont(new Font("SansSerif", Font.PLAIN, 12));
+
+            add(title, BorderLayout.NORTH);
+            add(details, BorderLayout.CENTER);
+            setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Task> list, Task task,
+                                                      int index, boolean isSelected, boolean cellHasFocus) {
+
+            title.setText(task.getTitle());
+
+            details.setText("Deadline: " + task.getDeadline() +
+                    " | Priority: " + task.getPriority());
+
+            if (task.isCompleted()) {
+                title.setText("✔ " + task.getTitle());
+                setBackground(new Color(200, 255, 200)); // green
+            } else {
+                setBackground(Color.WHITE);
+            }
+
+            if (isSelected) {
+                setBorder(BorderFactory.createLineBorder(new Color(52, 152, 219), 2));
+            } else {
+                setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            }
+
+            return this;
+        }
     }
 }
