@@ -20,6 +20,10 @@ public class Project {
         return tasks;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void addTask(Task task) {
         tasks.add(task);
     }
@@ -28,6 +32,20 @@ public class Project {
         if (index >= 0 && index < tasks.size()) {
             tasks.remove(index);
         }
+    }
+
+    public int getCompletedTaskCount() {
+        int count = 0;
+        for (Task task : tasks) {
+            if (task.isCompleted()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getPendingTaskCount() {
+        return tasks.size() - getCompletedTaskCount();
     }
 
     @Override

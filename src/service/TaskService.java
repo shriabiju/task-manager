@@ -2,6 +2,7 @@ package service;
 
 import model.Project;
 import model.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,9 @@ public class TaskService {
     }
 
     public void addProject(String name) {
-        projects.add(new Project(name));
+        if (name != null && !name.trim().isEmpty()) {
+            projects.add(new Project(name.trim()));
+        }
     }
 
     public void deleteProject(int index) {
@@ -32,7 +35,11 @@ public class TaskService {
 
     public void addTaskToProject(int projectIndex, String title, String deadline, String priority) {
         if (projectIndex >= 0 && projectIndex < projects.size()) {
-            projects.get(projectIndex).addTask(new Task(title, deadline, priority));
+            if (title != null && !title.trim().isEmpty()) {
+                projects.get(projectIndex).addTask(
+                        new Task(title.trim(), deadline.trim(), priority)
+                );
+            }
         }
     }
 
@@ -51,10 +58,39 @@ public class TaskService {
         }
     }
 
+    public void markTaskPending(int projectIndex, int taskIndex) {
+        if (projectIndex >= 0 && projectIndex < projects.size()) {
+            List<Task> tasks = projects.get(projectIndex).getTasks();
+            if (taskIndex >= 0 && taskIndex < tasks.size()) {
+                tasks.get(taskIndex).markPending();
+            }
+        }
+    }
+
     public List<Task> getTasksOfProject(int projectIndex) {
         if (projectIndex >= 0 && projectIndex < projects.size()) {
             return projects.get(projectIndex).getTasks();
         }
         return new ArrayList<>();
+    }
+
+    public int getTotalTaskCount() {
+        int total = 0;
+        for (Project project : projects) {
+            total += project.getTasks().size();
+        }
+        return total;
+    }
+
+    public int getCompletedTaskCount() {
+        int completed = 0;
+        for (Project project : projects) {
+            completed += project.getCompletedTaskCount();
+        }
+        return completed;
+    }
+
+    public int getPendingTaskCount() {
+        return getTotalTaskCount() - getCompletedTaskCount();
     }
 }
