@@ -5,6 +5,7 @@ TaskZen is a **Java Swing-based desktop application** designed to help users eff
 This project was developed as an academic mini project / internal submission to demonstrate the implementation of **GUI-based desktop application development using Java**, while applying concepts of **Object-Oriented Programming (OOP)**, modular design, event handling, and user interaction.
 
 ---
+[▶️ Watch Demo Video](./taskmanagement.mp4)
 
 ## 📌 Project Overview
 
