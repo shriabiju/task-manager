@@ -19,50 +19,67 @@ public class ProjectPanel extends JPanel {
         this.taskPanel = taskPanel;
 
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(250, 0));
-        setBackground(new Color(28, 37, 47));
+        setPreferredSize(new Dimension(260, 0));
+        setBackground(new Color(15, 23, 32));
 
-        JLabel title = new JLabel("Projects");
-        title.setForeground(Color.WHITE);
-        title.setFont(new Font("SansSerif", Font.BOLD, 22));
-        title.setBorder(BorderFactory.createEmptyBorder(20, 20, 15, 20));
-        add(title, BorderLayout.NORTH);
+        // ===== TOP TITLE =====
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+        topPanel.setBackground(new Color(15, 23, 32));
+        topPanel.setBorder(BorderFactory.createEmptyBorder(25, 20, 15, 20));
 
+        JLabel title = new JLabel("PROJECTS");
+        title.setForeground(new Color(120, 140, 160));
+        title.setFont(new Font("SansSerif", Font.BOLD, 13));
+
+        JLabel sub = new JLabel("Manage your workspaces");
+        sub.setForeground(new Color(170, 185, 200));
+        sub.setFont(new Font("SansSerif", Font.PLAIN, 12));
+
+        topPanel.add(title);
+        topPanel.add(Box.createVerticalStrut(5));
+        topPanel.add(sub);
+
+        add(topPanel, BorderLayout.NORTH);
+
+        // ===== LIST =====
         projectListModel = new DefaultListModel<>();
-
         projectList = new JList<>(projectListModel);
-        projectList.setFont(new Font("SansSerif", Font.PLAIN, 16));
-        projectList.setBackground(new Color(40, 55, 71));
+
+        projectList.setFont(new Font("SansSerif", Font.BOLD, 15));
+        projectList.setBackground(new Color(20, 30, 40));
         projectList.setForeground(Color.WHITE);
         projectList.setSelectionBackground(new Color(52, 152, 219));
         projectList.setSelectionForeground(Color.WHITE);
-        projectList.setFixedCellHeight(40);
+        projectList.setFixedCellHeight(45);
+        projectList.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         projectList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                int selectedIndex = projectList.getSelectedIndex();
-                taskPanel.loadTasksForProject(selectedIndex);
+                taskPanel.loadTasksForProject(projectList.getSelectedIndex());
             }
         });
 
-        JScrollPane scrollPane = new JScrollPane(projectList);
-        scrollPane.setBorder(null);
-        add(scrollPane, BorderLayout.CENTER);
+        JScrollPane scroll = new JScrollPane(projectList);
+        scroll.setBorder(null);
+        add(scroll, BorderLayout.CENTER);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(2, 1, 10, 10));
-        bottomPanel.setBackground(new Color(28, 37, 47));
+        // ===== BUTTON AREA =====
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new GridLayout(2, 1, 10, 10));
+        bottomPanel.setBackground(new Color(15, 23, 32));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        JButton addBtn = new JButton("Add Project");
-        styleButton(addBtn, new Color(46, 204, 113));
+        JButton addBtn = new JButton("+ Add Project");
+        JButton deleteBtn = new JButton("− Delete Project");
 
-        JButton deleteBtn = new JButton("Delete Project");
+        styleButton(addBtn, new Color(46, 204, 113));
         styleButton(deleteBtn, new Color(231, 76, 60));
 
         addBtn.addActionListener(e -> {
             String name = JOptionPane.showInputDialog(this, "Enter Project Name:");
             if (name != null && !name.trim().isEmpty()) {
-                taskService.addProject(name.trim());
+                taskService.addProject(name);
                 refreshProjectList();
             }
         });
@@ -87,15 +104,15 @@ public class ProjectPanel extends JPanel {
     public void refreshProjectList() {
         projectListModel.clear();
         List<Project> projects = taskService.getProjects();
-        for (Project project : projects) {
-            projectListModel.addElement(project);
+        for (Project p : projects) {
+            projectListModel.addElement(p);
         }
     }
 
-    private void styleButton(JButton button, Color bg) {
-        button.setFocusPainted(false);
-        button.setBackground(bg);
-        button.setForeground(Color.BLACK);
-        button.setFont(new Font("SansSerif", Font.BOLD, 14));
+    private void styleButton(JButton btn, Color color) {
+        btn.setFocusPainted(false);
+        btn.setBackground(color);
+        btn.setForeground(Color.BLACK);
+        btn.setFont(new Font("SansSerif", Font.BOLD, 14));
     }
 }
